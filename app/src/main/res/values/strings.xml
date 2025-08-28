@@ -18,6 +18,7 @@
 
     <string name="card_view_title">Card_View</string>
     <string name="list_view_title">List View</string>
+    <string name="oznaci_unsolved">Označi kao Unsolved</string>
 
 
     <string-array name="idea_categories">

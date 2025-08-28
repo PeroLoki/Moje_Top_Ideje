@@ -1,122 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
+        <!-- Naziv -->
+        <TextView
+            android:id="@+id/labelTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:alpha="0.8"
 
-        <LinearLayout
-            android:id="@+id/rowTitle"
+            android:text="Naziv"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Naziv:"
-                android:textStyle="bold" />
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
 
             <TextView
                 android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textStyle="bold"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:padding="16dp"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <!-- Opis -->
+        <TextView
+            android:id="@+id/labelOpis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:text="Opis"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:alpha="0.8"/>
 
-        <LinearLayout
-            android:id="@+id/rowCategory"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardOpis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategorija:"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/rowOpis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opis:"
-                android:textStyle="bold" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
 
             <TextView
                 android:id="@+id/tvOpis"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:lineSpacingExtra="2dp"
+                android:minHeight="72dp"
+                android:padding="10dp"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Status row -->
-        <LinearLayout
-            android:id="@+id/rowStatus"
+        <!-- Kategorija -->
+        <TextView
+            android:id="@+id/labelCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:text="Kategorija"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:alpha="0.8"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvCategory"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status:"
-                android:textStyle="bold" />
+                android:ellipsize="end"
+
+                android:maxLines="2"
+                android:padding="16dp"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/labelStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:text="Status"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:alpha="0.8"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
 
             <TextView
                 android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Unsolved" />
+                android:padding="16dp"
+                android:text="Unsolved"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Akcije: puni, jednake širine, centriran tekst -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSolve"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/oznaci_unsolved"
+                android:textAllCaps="false"
+                android:gravity="center"
+                app:cornerRadius="20dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:text="Edit"
+                android:textAllCaps="false"
+                app:cornerRadius="20dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Izbriši ideju"
+                android:textAllCaps="false"
+                android:gravity="center"
+                app:cornerRadius="20dp"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Mark as Unsolved" />
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Edit" />
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="izbriši ideju" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

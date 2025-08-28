@@ -42,6 +42,8 @@ public class HomeFragment extends Fragment {
     private IdeaAdapter adapter;
     private SharedPreferences prefs;
 
+    IdeaAdapter.ViewMode mode;
+
     private MenuItem settingsItem;
     private static final String PREF_VIEW_MODE = "view_mode";
     private Databaza db;
@@ -67,7 +69,7 @@ public class HomeFragment extends Fragment {
         adapter = new IdeaAdapter();
 
         prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        IdeaAdapter.ViewMode mode = loadMode();
+        mode = loadMode();
 
         recyclerView.setAdapter(adapter);
         applyLayoutManager(mode);
@@ -125,7 +127,7 @@ public class HomeFragment extends Fragment {
         menuHost.addMenuProvider(new MenuProvider() {
             @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                Log.d(TAG, "onCreateMenu se uaplio");
+
                 menuInflater.inflate(R.menu.menu_home, menu);
                 settingsItem = menu.findItem(R.id.action_settings);
 
@@ -137,8 +139,10 @@ public class HomeFragment extends Fragment {
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
 
                 if (menuItem.getItemId() == R.id.action_settings) {
-                    Log.d(TAG, "onMenuItemSelected se uaplio");
-                    setViewMode();
+
+                    mode = (mode == IdeaAdapter.ViewMode.LIST) ? IdeaAdapter.ViewMode.CARD : IdeaAdapter.ViewMode.LIST;
+                    prefs.edit().putString(KEY_MODE, mode.name()).apply();
+                    adapter.setViewMode(mode);
                     updateSettingsIcon();
 
                     return true;
@@ -148,14 +152,8 @@ public class HomeFragment extends Fragment {
         }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
     }
 
-    private void updateAdatpter() {
-
-    }
-
     private void applyLayoutManager(IdeaAdapter.ViewMode mode) {
-        Log.d(TAG, "applyLayoutManager se uaplio");
-        Log.d(TAG, "applyLayoutManager Initial mode = " + adapter.getViewMode());
-        Log.d(TAG, "applyLayoutManager sada je mode = " + mode);
+
 
         if (mode == IdeaAdapter.ViewMode.CARD) {
             Log.d(TAG, "sada je mode true");
@@ -175,17 +173,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateSettingsIcon() {
-        Log.d(TAG, "updateSettingsIcon se uaplio");
+
         if (settingsItem == null) return;
-        Log.d(TAG, "updateSettingsIcon se uaplio");
-        Log.d(TAG, "updateSettingsIcon Initial mode = " + adapter.getViewMode());
-        Log.d(TAG, "updateSettingsIcon sada je mode = " + IdeaAdapter.ViewMode.LIST);
+
         boolean isList = adapter.getViewMode() == IdeaAdapter.ViewMode.LIST;
-        Log.d(TAG, "bool = " + isList);
+
         adapter.setViewMode(isList ? IdeaAdapter.ViewMode.LIST : IdeaAdapter.ViewMode.CARD);
-        settingsItem.setIcon(isList ? R.drawable.outline_view_list_24 : R.drawable.outline_view_card_24);
-        settingsItem.setTitle(isList ? R.string.card_view_title : R.string.list_view_title);
-        Log.d(TAG, "updateSettingsIcon sada je mode = " + settingsItem.getTitle());
+        settingsItem.setIcon(isList ? R.drawable.outline_view_card_24 : R.drawable.outline_view_list_24);
+        settingsItem.setTitle(isList ? R.string.list_view_title : R.string.card_view_title);
+
         requireActivity().invalidateOptionsMenu();
 
     }

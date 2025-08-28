@@ -71,7 +71,7 @@ public class IdeaAdapter extends RecyclerView.Adapter<IdeaAdapter.VH> {
                     v.animate().scaleX(1f).scaleY(1f).setDuration(120).start();
                     break;
             }
-            return false; // let the click/ripple still happen
+            return false;
         });
     }
 
