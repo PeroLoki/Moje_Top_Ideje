@@ -16,6 +16,8 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.formatter.PercentFormatter;
@@ -66,25 +68,27 @@ public class AnalyticsFragment extends Fragment {
         if (rows != null) {
             for (StatusCount r : rows) {
                 total += r.count;
-                if (r.status)   solved   = r.count;
+                if (r.status) solved = r.count;
                 else if (!r.status) unsolved = r.count;
             }
         }
 
 
         List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(solved,   "Solved"));
         entries.add(new PieEntry(unsolved, "Unsolved"));
+        entries.add(new PieEntry(solved, "Solved"));
 
-        if (entries.isEmpty()) {
+
+        if (total == 0) {
             chart.clear();
             chart.setNoDataText("No ideas yet");
+            chart.setNoDataTextColor(android.graphics.Color.GRAY);
             chart.invalidate();
             return;
         }
 
-        int green  = android.graphics.Color.parseColor("#2E7D32"); // Solved
-        int orange = android.graphics.Color.parseColor("#FB8C00"); // Unsolved
+        int green = android.graphics.Color.parseColor("#2E7D32");
+        int orange = android.graphics.Color.parseColor("#FB8C00");
         List<Integer> colors = new ArrayList<>();
         for (PieEntry e : entries) {
             colors.add("Solved".equals(e.getLabel()) ? green : orange);
@@ -92,13 +96,23 @@ public class AnalyticsFragment extends Fragment {
 
 
         PieDataSet ds = new PieDataSet(entries, "");
-        ds.setColors(green, orange);
+        ds.setColors(orange, green);
         ds.setDrawValues(false);
         //ds.setValueFormatter(new PercentFormatter(chart));
         //ds.setSliceSpace(2f);
         //ds.setValueTextSize(12f);
         //ds.setValueTextColor(android.graphics.Color.WHITE);
         //ds.setValueFormatter(new com.github.mikephil.charting.formatter.PercentFormatter(chart));
+        ds.setDrawValues(true);
+        ds.setValueTextSize(14f);
+        ds.setValueTextColor(android.graphics.Color.WHITE);
+        ds.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getPieLabel(float value, PieEntry entry) {
+
+                return (int) value == 0 ? "" : String.valueOf((int) value);
+            }
+        });
 
         chart.setData(new PieData(ds));
         //chart.setUsePercentValues(true);
@@ -109,13 +123,30 @@ public class AnalyticsFragment extends Fragment {
         chart.invalidate();
         chart.getDescription().setEnabled(false);
 
-        // (Optional) Always show BOTH legend items even if one count is 0:
-        // Legend legend = chart.getLegend();
-        // List<LegendEntry> le = new ArrayList<>();
-        // LegendEntry l1 = new LegendEntry(); l1.label="Solved";   l1.formColor=green;  l1.form=Legend.LegendForm.CIRCLE;
-        // LegendEntry l2 = new LegendEntry(); l2.label="Unsolved"; l2.formColor=orange; l2.form=Legend.LegendForm.CIRCLE;
-        // le.add(l1); le.add(l2);
-        // legend.setCustom(le);
+
+        Legend legend = binding.pieSolved.getLegend();
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setDrawInside(false);
+
+        List<LegendEntry> le = new ArrayList<>();
+
+        LegendEntry uns = new LegendEntry();
+        uns.form = Legend.LegendForm.CIRCLE;
+        uns.formColor = orange;
+        uns.label = "Unsolved";
+
+        LegendEntry sol = new LegendEntry();
+        sol.form = Legend.LegendForm.CIRCLE;
+        sol.formColor = green;
+        sol.label = "Solved";
+
+        le.add(sol);
+        le.add(uns);
+
+        legend.setCustom(le);
+
     }
 
 
@@ -130,6 +161,13 @@ public class AnalyticsFragment extends Fragment {
                 entries.add(new BarEntry(i, r.count));
                 labels.add(r.kategorija == null ? "Unknown" : r.kategorija);
             }
+        }
+        if (entries.isEmpty()) {
+            chart.clear();
+            chart.setNoDataText("No ideas yet");
+            chart.setNoDataTextColor(android.graphics.Color.GRAY);
+            chart.invalidate();
+            return;
         }
 
         BarDataSet ds = new BarDataSet(entries, "Lalala");
@@ -155,7 +193,7 @@ public class AnalyticsFragment extends Fragment {
         x.setValueFormatter(new ValueFormatter() {
             @Override
             public String getAxisLabel(float value, AxisBase axis) {
-                int i = (int) value; // or Math.round(value)
+                int i = (int) value;
                 return (i >= 0 && i < labels.size()) ? labels.get(i) : "";
             }
         });

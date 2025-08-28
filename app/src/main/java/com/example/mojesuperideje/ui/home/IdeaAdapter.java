@@ -19,13 +19,17 @@ public class IdeaAdapter extends RecyclerView.Adapter<IdeaAdapter.VH> {
 
     public enum ViewMode { CARD, LIST }
 
+
+
     public interface OnItemClick { void onClick(Baza item); }
 
     private OnItemClick onItemClick;
 
     public void setOnItemClick(OnItemClick l) { this.onItemClick = l; }
     private List<Baza> data = new ArrayList<Baza>();
-    private ViewMode mode = ViewMode.LIST;
+    private ViewMode mode = ViewMode.CARD;
+
+    public ViewMode getViewMode() { return mode; }
 
     public void submit(List<Baza> items) {
         data.clear();

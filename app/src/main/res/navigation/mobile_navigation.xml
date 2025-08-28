@@ -9,11 +9,30 @@
         android:id="@+id/navigation_home"
         android:name="com.example.mojesuperideje.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_dodajIdeju"
+            app:destination="@id/dodajIdejuActivity" />
+        <action
+            android:id="@+id/action_home_to_idejaDetalji"
+            app:destination="@id/idejaDetaljiActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_analytics"
         android:name="com.example.mojesuperideje.ui.analytics.AnalyticsFragment"
         android:label="@string/title_analytics"
         tools:layout="@layout/fragment_analytics" />
+
+    <activity
+        android:id="@+id/dodajIdejuActivity"
+        android:name="com.example.mojesuperideje.ui.DodajIdejuActivity"
+        android:label="dodaj ideju "/>
+
+    <activity
+        android:id="@+id/idejaDetaljiActivity"
+        android:name="com.example.mojesuperideje.ui.IdejaDetaljiActivity"
+        android:label="Detalji ideje" />
+
+
 </navigation>

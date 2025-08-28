@@ -13,12 +13,17 @@
 
     <string name="idea_description">Idea description</string>
     <string name="idea_category">Odaberi kategoriju: </string>
+    <string name="solved_pregled">Solved pregled</string>
+    <string name="po_kategoriji">Po kategoriji</string>
+
+    <string name="card_view_title">Card_View</string>
+    <string name="list_view_title">List View</string>
 
 
     <string-array name="idea_categories">
-        <item>Music</item>
+        <item>Muzika</item>
         <item>Startup</item>
         <item>Random</item>
-        <item>Productivity</item>
+        <item>Produktivnost</item>
     </string-array>
 </resources>

@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class IdejaDetaljiActivity extends AppCompatActivity {
+public class IdejaDetaljiActivity extends AppCompatActivity  {
 
     private Databaza db;
     private BazaDao dao;
@@ -58,10 +58,12 @@ public class IdejaDetaljiActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Details");
         }
 
+
+
         dao.observeById(ideaId).observe(this, idea -> {
             if (idea != null) {
                 tvTitle.setText(idea.title);
-                tvOpis.setText(idea.opis);            // or idea.naziv if that’s your field name
+                tvOpis.setText(idea.opis);
                 tvCategory.setText(idea.kategorija);
                 isSolved = idea.solved;
                 tvStatus.setText(isSolved ? "Solved" : "Unsolved");

@@ -1,19 +1,51 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical" android:padding="16dp"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <!-- Pie title -->
+        <TextView
+            android:id="@+id/titlePie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/solved_pregled"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="8dp" />
+
+        <!-- Pie chart -->
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieSolved"
             android:layout_width="match_parent"
             android:layout_height="260dp" />
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/po_kategoriji"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="8dp" />
+
+        <!-- Bar chart -->
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barByCategory"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginTop="24dp"/>
+            android:contentDescription="Bar chart by category" />
     </LinearLayout>
 </ScrollView>

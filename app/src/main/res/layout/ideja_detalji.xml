@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Naziv row -->
+
         <LinearLayout
             android:id="@+id/rowTitle"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <!-- Kategorija row -->
+
         <LinearLayout
             android:id="@+id/rowCategory"
             android:layout_width="match_parent"
@@ -55,7 +55,6 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <!-- Opis row -->
         <LinearLayout
             android:id="@+id/rowOpis"
             android:layout_width="match_parent"
