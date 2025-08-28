@@ -60,7 +60,7 @@ public class DodajIdejuActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerCategory.setAdapter(adapter);
 
-        binding.btnSave.setOnClickListener(v -> save());//{
+        binding.btnSave.setOnClickListener(v -> save());
 
         int id = getIntent().getIntExtra("edit_id", -1);
         if (id != -1) {
@@ -68,7 +68,7 @@ public class DodajIdejuActivity extends AppCompatActivity {
             setTitle("Edit Idea");
             binding.btnSave.setText("Update");
 
-            // load existing row and pre-fill
+
             Executors.newSingleThreadExecutor().execute(() -> {
                 Baza existing = bazaDao.getById(editId);
                 runOnUiThread(() -> {
@@ -107,7 +107,7 @@ private void save() {
         Boolean solved = false;
 
         if (TextUtils.isEmpty(title) || TextUtils.isEmpty(kategorija)) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Popunite sva potrebna polja", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -117,7 +117,7 @@ private void save() {
         item.kategorija = kategorija;
         item.solved = false;
         if (editId != null) {
-            item.id = editId; // required for @Update to know which row
+            item.id = editId;
             io.execute(() -> {
                 bazaDao.updateIdea(editId,title,opis,kategorija,solved);
                 runOnUiThread(() -> {

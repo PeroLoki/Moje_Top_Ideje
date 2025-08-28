@@ -20,38 +20,28 @@ public class CreateSolveDelete {
 
     @Test
     public void add_solve_delete() {
-
         ActivityScenario.launch(MainActivity.class);
-
-
         onView(withId(R.id.fabAdd)).perform(click());
 
         String title = "E2E Title";
         String kategorija = "Produktivnost";
         String opis = "Ovo je opis za test.";
 
-
         onView(withId(R.id.etTitle)).perform(typeText(title), closeSoftKeyboard());
         onView(withId(R.id.etDescription)).perform(click());
         onView(withId(R.id.etDescription)).perform(typeText(opis));
         onView(withId(R.id.spinnerCategory)).perform(click());
         onView(withText(kategorija)).perform(click());
-
         onView(withId(R.id.btnSave)).perform(click());
-
         onView(withText(title)).perform(click());
-
         onView(withId(R.id.btnSolve)).perform(click());
         SystemClock.sleep(3000);
         onView(withId(R.id.btnSolve)).perform(click());
-
         onView(withId(R.id.btnDelete)).perform(click());
-
-
         onView(withText("Obriši")).perform(click());
-
         onView(withId(R.id.recycler))
                 .check(matches(not(hasDescendant(withText(title)))));
+        
     }
 
     @Test

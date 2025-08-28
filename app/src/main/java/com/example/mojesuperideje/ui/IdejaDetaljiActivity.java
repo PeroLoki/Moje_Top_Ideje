@@ -86,7 +86,7 @@ public class IdejaDetaljiActivity extends AppCompatActivity  {
 
                 dao.updateSolved(ideaId, !isSolved);
                 runOnUiThread(() ->
-                        Toast.makeText(this, "Marked as Solved", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Status promijenjen", Toast.LENGTH_SHORT).show()
                 );
 
             });

@@ -17,24 +17,24 @@ public class DatabaseTest {
         private Databaza appDatabase;
         private BazaDao bazaDao;
 
-        @Before //executed before each test method
+        @Before
         public void createDb() {
-//ApplicationProvider provides a way to access the application
+
 
             Context context = ApplicationProvider.getApplicationContext();
-//creates an in-memory database
+
             appDatabase = Room.inMemoryDatabaseBuilder(context,
                     Databaza.class).build();
             bazaDao = appDatabase.bazaDao();
         }
 
-        @After //executed after each test method
+        @After
         public void closeDB() {
             appDatabase.close();
         }
 
-        @Test //the actual test method
-        public void writeAndReadNote() throws Exception {//note creation
+        @Test
+        public void writeAndReadNote() throws Exception {
             Baza baza = new Baza();
             String TEXT = "sample note text, testing 1 2 3 ";
             baza.title = TEXT;
