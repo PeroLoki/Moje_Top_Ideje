@@ -3,4 +3,22 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_analytics">Analytics</string>
+    <string name="idea_name">Idea Name</string>
+
+    <string name="title_add_idea">Add idea</string>
+    <string name="idea_title">Idea title</string>
+    <string name="save_idea">Save</string>
+    <string name="error_title_required">Title is required</string>
+
+
+    <string name="idea_description">Idea description</string>
+    <string name="idea_category">Odaberi kategoriju: </string>
+
+
+    <string-array name="idea_categories">
+        <item>Music</item>
+        <item>Startup</item>
+        <item>Random</item>
+        <item>Productivity</item>
+    </string-array>
 </resources>
